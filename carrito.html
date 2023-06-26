@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tienda de Frutas y Verduras</title>
+  <style>
+    /* Estilos CSS para el diseño básico */
+    html{
+      background-color: #af3c3c;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+     background-color: #394e3a;
+    padding: 10px;
+    text-align: center;
+    }
+    #cart {
+      float: left;
+      width: 25%;
+      height: 100vh;
+      background-color: #f9f9f9;
+      padding: 20px;
+      background-color: sandybrown;
+}
+    }
+    #cart-items {
+      list-style-type: none;
+      padding: 0;
+    }
+    #stats {
+      margin-left: 25%;
+      padding: 20px;
+    }
+    #modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Tienda de Frutas y Verduras</h1>
+  </header>
+  
+  <div id="cart">
+    <h2>Carrito de Compras</h2>
+    <ul id="cart-items">
+      <!-- Aquí se agregarán los elementos del carrito de compras -->
+    </ul>
+    <input type="text" id="item-input" placeholder="Agregar elemento" />
+    <button onclick="addItem()">Agregar</button>
+    <button onclick="clearCart()">Vaciar carrito</button>
+    <button onclick="buy()">Comprar</button>
+  </div>
+
+   <div id="back-btn">
+      <button><a href="indexverdus.html">Regresar a la pagina principal</a></button>
+    </div>
+  </div>
+  
+  <div id="modal">
+    <p>La compra ha sido realizada.</p>
+  </div>
+  
+  <script>
+    const cartItemsElement = document.getElementById('cart-items');
+    const itemInput = document.getElementById('item-input');
+    const modal = document.getElementById('modal');
+    
+    function addToCart(item) {
+      const li = document.createElement('li');
+      li.textContent = item;
+      cartItemsElement.appendChild(li);
+    }
+    
+    function removeFromCart(item) {
+      const items = cartItemsElement.getElementsByTagName('li');
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].textContent === item) {
+          cartItemsElement.removeChild(items[i]);
+          break;
+        }
+      }
+    }
+    
+    function addItem() {
+      const item = itemInput.value.trim();
+      if (item !== '') {
+        addToCart(item);
+        itemInput.value = '';
+      }
+    }
+    
+    function clearCart() {
+      cartItemsElement.innerHTML = '';
+    }
+    
+    function buy() {
+      clearCart();
+      showModal();
+    }
+    
+    function showModal() {
+      modal.style.display = 'block';
+    }
+  </script>
+</body>
+</html

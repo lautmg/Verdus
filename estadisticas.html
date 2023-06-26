@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Graficos de Ventas - Los Verdus</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* Estilos CSS para el diseño básico */
+    html{
+        background-color: #060606;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #78a944;
+      padding: 10px;
+      text-align: center;
+    }
+    #charts {
+      padding: 20px;
+      display: flex;
+      justify-content: space-around;
+    }
+    canvas {
+      width: 400px;
+      height: 300px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Graficos de Ventas - Los Verdus</h1>
+  </header>
+  
+  <div id="charts">
+    <canvas id="salesChart"></canvas>
+    <canvas id="productsChart"></canvas>
+  </div>
+  
+  <script>
+    // Datos de ejemplo
+    const salesData = {
+      labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
+      datasets: [{
+        label: 'Ventas Mensuales',
+        data: [120, 150, 180, 90, 200, 160],
+        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1
+      }]
+    };
+    
+    const productsData = {
+      labels: ['Manzanas', 'Peras', 'Naranjas', 'Bananas', 'Tomates'],
+      datasets: [{
+        label: 'Cantidad Vendida',
+        data: [50, 40, 30, 60, 80],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.6)',
+          'rgba(54, 162, 235, 0.6)',
+          'rgba(255, 206, 86, 0.6)',
+          'rgba(75, 192, 192, 0.6)',
+          'rgba(153, 102, 255, 0.6)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)'
+        ],
+        borderWidth: 1
+      }]
+    };
+    
+    // Crear gráfico de ventas mensuales
+    const salesChartElement = document.getElementById('salesChart').getContext('2d');
+    new Chart(salesChartElement, {
+      type: 'bar',
+      data: salesData,
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+    
+    // Crear gráfico de cantidad de productos vendidos
+    const productsChartElement = document.getElementById('productsChart').getContext('2d');
+    new Chart(productsChartElement, {
+      type: 'doughnut',
+      data: productsData,
+      options: {
+        responsive: true
+      }
+    });
+  </script>
+
+    <div id="back-btn">
+      <button><a href="indexverdus.html">Volver a la página principal</a></button>
+    </div>
+  </div>
+</body>
+</html>
